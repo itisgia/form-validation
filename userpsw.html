@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form class="" onsubmit="return checkForm(this);" method="post">
+            Your ID :
+            <input type="text" id="username" name="" value=""><br><br><br>
+            Your password :
+            <input type="text" id="pwd1" name="" value=""><br><br><br>
+            Confirm password:
+            <input type="text" id="pwd2" name="" value=""><br><br><br>
+            <input type="submit" name="" value="Submit"><br><br><br>
+        </form>
+        <script type="text/javascript">
+        function checkForm(form){//checking for username presence
+            if(form.username.value == "") {
+                  alert("Error: Username cannot be blank!");
+                  form.username.focus();
+                  return false;
+            }
+            re = /^\w+$/; //creating the pattern of word
+            if(!re.test(form.username.value)) { //error reporting if contains non-word character
+                  alert("Error: Username must contain only letters, numbers and underscores!");
+                  form.username.focus();
+                  return false;
+            }
+            //checking if password is present and equal to the confirm password value
+            if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+                  if(form.pwd1.value.length < 6) {
+                        alert("Error: Password must contain at least six characters!");
+                        form.pwd1.focus();
+                        return false;
+                  }
+              //error reporting if username is same as the password
+              if(form.pwd1.value == form.username.value) {
+                  alert("Error: Password must be different from Username!");
+                  form.pwd1.focus();
+                  return false;
+              }
+              re = /[0-9]/; //creating numeric pattern then checking if passwrd has atleast 1 numeric value
+              if(!re.test(form.pwd1.value)) {
+                  alert("Error: password must contain at least one number (0-9)!");
+                  form.pwd1.focus();
+                  return false;
+              }
+              re = /[a-z]/; //creating alphabet pattern of lowercase and reporting if password does not contain lowercase characters
+              if(!re.test(form.pwd1.value)) {
+                  console.log('alphabet');
+                    alert("Error: password must contain at least one lowercase letter (a-z)!");
+                    form.pwd1.focus();
+                    return false;
+              }
+              re = /[A-Z]/; //creating alphabet pattern of uppercase and reporting if password does not contain upppercase characters
+              if(!re.test(form.pwd1.value)) {
+                    alert("Error: password must contain at least one uppercase letter (A-Z)!");
+                    form.pwd1.focus();
+                    return false;
+              }
+            } else { //if password not given or not confirmed hen report error
+                  alert("Error: Please check that you've entered and confirmed your password!");
+                  form.pwd1.focus();
+                  return false;
+            }
+                alert("You entered a valid password: " + form.pwd1.value); //do not show password in real projects for security reasons.
+                return true;
+          }
+
+
+        </script>
+    </body>
+</html>

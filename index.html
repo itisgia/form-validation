@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Regular Expression</title>
+    </head>
+    <body>
+        <form class="" action="index.html" onsubmit="validate()" method="post">
+            Phone number :
+            <input type="text" id="phone-number" name="" value=""><br><br><br>
+            Postal code :
+            <input type="text" id="postal-code" name="" value=""><br><br><br>
+            <input type="submit" name="" value="Submit"><br><br><br>
+        </form>
+        <script type="text/javascript">
+            //541-754-3010
+            //(541) 754 3010 -A
+
+            // +61-09-341 0869 -B
+
+            function validate() {
+                var phoneNumber = document.getElementById('phone-number').value;
+                // var phoneRGEX = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.][0-9]{3}[-\s\.][0-9]{4}$/ A
+                var phoneRGEX = /^[+]{0,1}[0-9]{2}[-\s\.][0-9]{2}[-\s\.][0-9]{3}[-\s\.][0-9]{4}$/ //B
+                var phoneResult = phoneRGEX.test(phoneNumber);
+
+                var postalCode = document.getElementById('postal-code').value;
+                var postRGEX = /^[A-Z]{1,2}[0-9]{1,2} ? [0-9]{1}[A-z]{2}$/i; //B  i means you can use lower case
+                var postResult = postRGEX.test(postalCode);
+
+                if (phoneResult || postResult == false) {
+                    alert("Please enter a valid phone numer or postal code");
+                    return false;
+                } else {
+                    alert("Phone number correct");
+                        return true;
+                }
+
+            } //function ends
+        </script>
+    </body>
+</html>
